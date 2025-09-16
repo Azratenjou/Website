@@ -1,0 +1,105 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PhoTech - Photo Editing Services</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:0;padding:0;background:#f4f4f4;color:#222}
+    header{background:#111;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:16px 30px;position:sticky;top:0;z-index:10}
+    .logo{font-size:20px;font-weight:bold;color:#f44336}
+    nav a{margin-left:20px;text-decoration:none;color:#fff;font-weight:bold}
+    nav a:hover{color:#f44336}
+    .hero{background:url('https://picsum.photos/1600/800?blur')center/cover no-repeat;color:white;text-align:center;padding:120px 20px}
+    .hero h1{font-size:48px;margin-bottom:14px}
+    .hero p{font-size:18px;margin-bottom:20px}
+    .hero button{padding:14px 24px;border:none;border-radius:6px;background:#f44336;color:white;cursor:pointer;font-size:16px}
+    .hero button:hover{background:#c62828}
+    .about,.services,.testimonials,.contact{padding:60px 30px}
+    .about{background:#fff;display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+    .about img{max-width:500px;border-radius:10px}
+    .about div{flex:1;min-width:250px}
+    .services h2,.testimonials h2,.contact h2{text-align:center;margin-bottom:20px}
+    .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+    .service{background:#fff;padding:20px;border-radius:10px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+    .testimonials{background:#fafafa}
+    .testimonial{max-width:600px;margin:20px auto;font-style:italic}
+    form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+    input,textarea{padding:12px;border:1px solid #ccc;border-radius:6px}
+    form button{background:#f44336;color:white;padding:12px;border:none;border-radius:6px;cursor:pointer}
+    form button:hover{background:#c62828}
+    footer{background:#111;color:white;text-align:center;padding:20px;margin-top:20px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PhoTech</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>  <section class="hero" id="home">
+    <h1>Professional Photo Editing</h1>
+    <p>Transform your photos with expert editing and high quality prints.</p>
+    <button onclick="location.href='#services'">Get Started</button>
+  </section>  <section class="about" id="about">
+    <img src="https://www.picdrop.com/web/wp-content/uploads/istock-1196171818-kopie-1280x720.jpg" alt="About Us">
+    <div>
+      <h2>Who We Are</h2>
+      <p>PhoTech provides advanced photo editing and printing services. We enhance your digital images and deliver beautiful physical prints.</p>
+    </div>
+  </section>  <section class="services" id="services">
+    <h2>Our Services</h2>
+    <div class="service-grid">
+      <div class="service">
+        <h3>Basic Retouching</h3>
+        <p>Remove blemishes and improve photo clarity.</p>
+      </div>
+      <div class="service">
+        <h3>Background Removal</h3>
+        <p>Get clean transparent or replaced backgrounds.</p>
+      </div>
+      <div class="service">
+        <h3>Color Correction</h3>
+        <p>Fix tones and balance colors for a natural look.</p>
+      </div>
+      <div class="service">
+        <h3>Prints</h3>
+        <p>High quality templates and physical prints.</p>
+      </div>
+    </div>
+  </section>  <section class="testimonials" id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial">"PhoTech made my photos look amazing!" – Maria L.</div>
+    <div class="testimonial">"Fast, affordable, and high quality." – John D.</div>
+  </section>  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>  <footer>
+    <p>© 2025 PhoTech. All Rights Reserved.</p>
+  </footer>  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      const res = await fetch('http://localhost:3000/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const text = await res.text();
+      alert(text);
+    });
+  </script></body>
+</html>
